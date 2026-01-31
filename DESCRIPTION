@@ -1,5 +1,5 @@
 Package: tidyextreme
-Title: ETCCDI Climate Indices Calculator
+Title: A Tidy Toolbox for Climate Extreme Indices
 Version: 1.0.0
 Authors@R: 
     person(
@@ -8,11 +8,13 @@ Authors@R:
       email = "marciobcure@gmail.com",
       role = c("aut", "cre")
     )
+URL: https://github.com/Mauritia-flexuosa/tidyextreme
+BugReports: https://github.com/Mauritia-flexuosa/tidyextreme/issues    
 Description: |
     Calculate Expert Team on Climate Change Detection and Indices (ETCCDI)
     climate indices from daily or hourly temperature and precipitation data.
     Provides flexible data handling.
-License: MIT + file LICENSE
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports:
