@@ -1,2 +1,866 @@
-# tidyextreme
-tidyextreme: A Tidy Toolbox for Climate Extreme Indices
+# tidyextreme: A Tidy Toolbox for Climate Extreme Indices
+##### Marcio Baldissera Cure
+date: 31/01/2026
+
+## Introduction
+
+The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit for calculating essential climate extreme indices as defined by the Expert Team on Climate Change Detection and Indices (ETCCDI). Designed for seamless integration into modern data analysis workflows, it allows researchers to compute key metrics—such as maximum 1-day precipitation (Rx1day), consecutive dry days (CDD), warm spell duration (WSDI), and monthly temperature extremes (TXx, TNn)—directly from daily or hourly data using a consistent `calculate_*()` syntax. By returning tidy data frames and leveraging `dplyr` and `ggplot2` compatibility, tidyextreme simplifies the entire process of extreme event analysis, from data preparation to visualization, making climate research more efficient and reproducible.
+
+## Installation
+
+# Intall from GitHub:
+# Option 1: Using devtools
+`devtools::install_github("Mauritia-flexuosa/tidyextreme")`
+
+# Option 2: Using remotes
+`remotes::install_github("Mauritia-flexuosa/tidyextreme")`
+
+## 1. Data Preparation
+
+### Creating Synthetic Climate Data
+
+Let's create 10 years of realistic daily climate data:
+
+```{r setup, message=FALSE, warning=FALSE, include=T, echo=T}
+set.seed(123)
+library(tibble)
+library(lubridate)
+
+# Create 10 years of daily data (2000-2009)
+n_years <- 10
+n_days <- n_years * 365
+
+climate_data <- tibble::tibble(
+  date = seq(as.Date("2000-01-01"), by = "day", length.out = n_days),
+  
+  # Precipitation: seasonal pattern with extreme events
+  prcp = pmax(0, rgamma(n_days, shape = 1.2, rate = 0.4) + 
+               sin(yday(date) * 2 * pi / 365) * 5),
+  
+  # Maximum temperature: seasonal with warming trend
+  tmax = 20 + 10 * sin(yday(date) * 2 * pi / 365 - pi/2) + 
+         rnorm(n_days, 0, 3) + 
+         (year(date) - 2000) * 0.1,
+  
+  # Minimum temperature: seasonal
+  tmin = 10 + 8 * sin(yday(date) * 2 * pi / 365 - pi/2) + 
+         rnorm(n_days, 0, 2)
+)
+
+# Add extreme events
+climate_data$prcp[100] <- 150
+climate_data$tmax[500:505] <- 42
+climate_data$tmin[800:803] <- -8
+
+head(climate_data)
+```
+
+## 2. Precipitation Indices
+
+### 2.1 Maximum 1-day Precipitation (Rx1day)
+
+Calculates the annual maximum 1-day precipitation amount, following ETCCDI definition Rx1day.
+
+#### Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+min_valid_years: Minimum years with valid data (default: 1)
+```
+
+Returns: A data.frame with columns: year, Rx1day
+
+```{r rx1day, message=FALSE, warning=FALSE, include=T, echo=T}
+library(tidyextreme)
+
+rx1day_result <- calculate_Rx1day(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(rx1day_result)
+```
+
+### 2.2 Maximum Consecutive 5-day Precipitation (Rx5day)
+
+Calculates the annual maximum precipitation amount accumulated over 5 consecutive days, following ETCCDI definition Rx5day.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+```
+
+Returns: A data.frame with columns: year, Rx5day
+
+```{r rx5day, message=FALSE, warning=FALSE, include=T, echo=T}
+rx5day_result <- calculate_Rx5day(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(rx5day_result)
+```
+
+### 2.3 Number of Heavy Precipitation Days (R10mm)
+
+Counts the number of days per year when precipitation ≥ 10 mm, following ETCCDI definition R10mm.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+threshold: Precipitation threshold in mm (default: 10)
+```
+
+Returns: A data.frame with columns: year, R10mm
+
+```{r r10mm, message=FALSE, warning=FALSE, include=T, echo=T}
+r10mm_result <- calculate_R10mm(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(r10mm_result)
+```
+
+### 2.4 Number of Very Heavy Precipitation Days (R20mm)
+
+Counts the number of days per year when precipitation ≥ 20 mm, following ETCCDI definition R20mm.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+threshold: Precipitation threshold in mm (default: 20)
+```
+
+Returns: A data.frame with columns: year, R20mm
+
+```{r r20mm, message=FALSE, warning=FALSE, include=T, echo=T}
+r20mm_result <- calculate_R20mm(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(r20mm_result)
+```
+
+### 2.5 Number of Days with Precipitation ≥ 1mm (R1mm)
+
+Counts the number of days per year when precipitation ≥ 1 mm, representing wet days.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+threshold: Precipitation threshold in mm (default: 1)
+```
+
+Returns: A data.frame with columns: year, R1mm
+
+```{r r1mm, message=FALSE, warning=FALSE, include=T, echo=T}
+r1mm_result <- calculate_R1mm(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(r1mm_result)
+```
+
+### 2.6 Consecutive Dry Days (CDD)
+
+Calculates statistics for dry spells (consecutive days with precipitation \< 1 mm), following ETCCDI definition CDD.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+dry_threshold: Threshold for dry day in mm (default: 1)
+```
+
+Returns: A data.frame with columns: year, CDD_max, CDD_mean, CDD_median, n_dry_spells
+
+```{r cdd, message=FALSE, warning=FALSE, include=T, echo=T}
+cdd_result <- calculate_CDD(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(cdd_result)
+```
+
+### 2.7 Consecutive Wet Days (CWD)
+
+Calculates statistics for wet spells (consecutive days with precipitation ≥ 1 mm), following ETCCDI definition CWD.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+wet_threshold: Threshold for wet day in mm (default: 1)
+```
+
+Returns: A data.frame with columns: year, CWD_max, CWD_mean, CWD_median, n_wet_spells
+
+```{r cwd, message=FALSE, warning=FALSE, include=T, echo=T}
+cwd_result <- calculate_CWD(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(cwd_result)
+```
+
+### 2.8 Simple Daily Intensity Index (SDII)
+
+Calculates the mean precipitation amount on wet days (≥ 1 mm), following ETCCDI definition SDII.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+wet_threshold: Threshold for wet day in mm (default: 1)
+```
+
+Returns: A data.frame with columns: year, SDII, wet_days, total_prcp
+
+```{r sdii, message=FALSE, warning=FALSE, include=T, echo=T}
+sdii_result <- calculate_SDII(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(sdii_result)
+```
+
+### 2.9 Annual Precipitation Statistics
+
+Calculates comprehensive annual precipitation statistics including total precipitation, number of wet days, mean daily precipitation, and maximum daily precipitation.
+
+Parameters:
+
+```         
+df: Data frame with precipitation data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+prcp_col: Name of precipitation column (daily data)
+
+precip_col: Name of precipitation column (hourly data)
+
+wet_threshold: Threshold for wet day in mm (default: 1)
+```
+
+Returns: A data.frame with columns: year, PRCP_total, PRCP_days, PRCP_mean, PRCP_max
+
+```{r annual_precip_stats, message=FALSE, warning=FALSE, include=T, echo=T}
+prcpstats_result <- calculate_PRCPstats(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  prcp_col = "prcp"
+)
+
+head(prcpstats_result)
+```
+
+## 3. Temperature Indices
+
+### 3.1 Number of Summer Days (TX \> 25°C)
+
+Counts the number of days per year when daily maximum temperature exceeds 25°C, following ETCCDI definition SU25.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+threshold: Temperature threshold in °C (default: 25)
+```
+
+Returns: A tibble with columns: year, TX25
+
+```{r su25, message=FALSE, warning=FALSE, include=T, echo=T}
+tx25_result <- calculate_TX25(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax"
+)
+
+head(tx25_result)
+```
+
+### 3.2 Number of Tropical Nights (TN \> 20°C)
+
+Counts the number of days per year when daily minimum temperature exceeds 20°C, following ETCCDI definition TR20.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+threshold: Temperature threshold in °C (default: 20)
+```
+
+Returns: A tibble with columns: year, TR20
+
+```{r tr20, message=FALSE, warning=FALSE, include=T, echo=T}
+tr20_result <- calculate_TR20(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmin_col = "tmin"
+)
+
+head(tr20_result)
+```
+
+### 3.3 Monthly Maximum Value of Daily Maximum Temperature (TXx)
+
+Calculates the highest daily maximum temperature for each month, following ETCCDI definition TXx.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+min_days: Minimum days per month for valid calculation (default: 20)
+```
+
+Returns: A tibble with columns: year, month, TXx
+
+```{r txx, message=FALSE, warning=FALSE, include=T, echo=T}
+txx_result <- calculate_TXx(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax"
+)
+
+head(txx_result)
+```
+
+### 3.4 Monthly Minimum Value of Daily Minimum Temperature (TNn)
+
+Calculates the lowest daily minimum temperature for each month, following ETCCDI definition TNn.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+min_days: Minimum days per month for valid calculation (default: 20)
+```
+
+Returns: A tibble with columns: year, month, TNn
+
+```{r tnn, message=FALSE, warning=FALSE, include=T, echo=T}
+tnn_result <- calculate_TNn(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmin_col = "tmin"
+)
+
+head(tnn_result)
+```
+
+### 3.5 Number of Days with Temperature ≥ 30°C (TX30)
+
+Counts the number of days per year when daily temperature is greater than or equal to 30°C.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+```
+
+Returns: A tibble with columns: year, TX30
+
+```{r tx30, message=FALSE, warning=FALSE, include=T, echo=T}
+tx30_result <- calculate_TX30(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax"
+)
+
+head(tx30_result)
+```
+
+### 3.6 Number of Days with Temperature ≥ 35°C (TX35)
+
+Counts the number of days per year when daily temperature is greater than or equal to 35°C.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+```
+
+Returns: A tibble with columns: year, TX35
+
+```{r tx35, message=FALSE, warning=FALSE, include=T, echo=T}
+tx35_result <- calculate_TX35(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax"
+)
+
+head(tx35_result)
+```
+
+### 3.7 Number of Days with Temperature \< 0°C (TN0)
+
+Counts the number of days per year when daily temperature is less than 0°C.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+```
+
+Returns: A tibble with columns: year, TN0
+
+```{r tn0, message=FALSE, warning=FALSE, include=T, echo=T}
+tn0_result <- calculate_TN0(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmin_col = "tmin"
+)
+
+head(tn0_result)
+```
+
+### 3.8 Diurnal Temperature Range (DTR)
+
+Calculates the mean and standard deviation of daily temperature range (difference between maximum and minimum temperature) per year.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (hourly data)
+```
+
+Returns: A tibble with columns: year, DTR_mean, DTR_sd, n_days
+
+```{r dtr, message=FALSE, warning=FALSE, include=T, echo=T}
+dtr_result <- calculate_DTR(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax",
+  tmin_col = "tmin"
+)
+
+head(dtr_result)
+```
+
+### 3.9 90th Percentile of Daily Temperature (TX90p)
+
+Calculates the 90th percentile of daily temperature per year, used as threshold for extreme warm days.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+```
+
+Returns: A tibble with columns: year, TX90p
+
+```{r tx90p, message=FALSE, warning=FALSE, include=T, echo=T}
+tx90p_result <- calculate_TX90p(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax"
+)
+
+head(tx90p_result)
+```
+
+### 3.10 10th Percentile of Daily Temperature (TN10p)
+
+Calculates the 10th percentile of daily temperature per year, used as threshold for extreme cold nights.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+```
+
+Returns: A tibble with columns: year, TN10p
+
+```{r tn10p, message=FALSE, warning=FALSE, include=T, echo=T}
+tn10p_result <- calculate_TN10p(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmin_col = "tmin"
+)
+
+head(tn10p_result)
+```
+
+### 3.11 Warm Spell Duration Index (WSDI)
+
+Calculates the number of days with at least 6 consecutive days where temperature exceeds the 90th percentile, following ETCCDI definition WSDI.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmax_col: Name of maximum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+window_days: Window size for percentile calculation (default: 30)
+
+min_consecutive: Minimum consecutive days for warm spell (default: 6)
+```
+
+Returns: A tibble with columns: year, WSDI, n_spells, mean_spell_length
+
+```{r wsdi, message=FALSE, warning=FALSE, include=T, echo=T}
+wsdi_result <- calculate_WSDI(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmax_col = "tmax",
+  window_days = 30,
+  min_consecutive = 6
+)
+
+head(wsdi_result)
+```
+
+### 3.12 Cold Spell Duration Index (CSDI)
+
+Calculates the number of days with at least 6 consecutive days where temperature is below the 10th percentile, following ETCCDI definition CSDI.
+
+Parameters:
+
+```         
+df: Data frame with climate data
+
+frequency: Temporal frequency: "daily" or "hourly"
+
+time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+
+tmin_col: Name of minimum temperature column (daily data)
+
+temp_col: Name of temperature column (for single temp or hourly)
+
+window_days: Window size for percentile calculation (default: 30)
+
+min_consecutive: Minimum consecutive days for cold spell (default: 6)
+```
+
+Returns: A tibble with columns: year, CSDI, n_spells, mean_spell_length
+
+```{r csdi, message=FALSE, warning=FALSE, include=T, echo=T}
+csdi_result <- calculate_CSDI(
+  df = climate_data,
+  frequency = "daily",
+  time_col = "date",
+  tmin_col = "tmin",
+  window_days = 30,
+  min_consecutive = 6
+)
+
+head(csdi_result)
+```
+
+## 4. Visualizing Results
+
+Let's visualize some of the calculated indices to see trends over time:
+
+```{r visualization, message=FALSE, warning=FALSE, include=T, echo=T, fig.width=8, fig.height=6}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+# Prepare data for visualization
+precip_data <- rx1day_result |>
+  left_join(r10mm_result, by = "year") |>
+  left_join(sdii_result |> select(year, SDII), by = "year")
+
+# Convert to long format for plotting
+precip_long <- precip_data |>
+  pivot_longer(cols = -year, names_to = "index", values_to = "value")
+
+# Plot precipitation indices
+ggplot(precip_long, aes(x = year, y = value, color = index)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  facet_wrap(~index, scales = "free_y", ncol = 1) +
+  labs(title = "Precipitation Indices Over Time",
+       x = "Year",
+       y = "Value") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## 5. Summary
+
+The tidyextreme package provides a comprehensive set of functions for calculating climate extreme indices. All functions follow ETCCDI definitions and return tidy data frames for easy analysis and visualization.
+
+```{r functions, message=FALSE, warning=FALSE, include=T, echo=F}
+# Create a summary table of indices
+indices_table <- tribble(
+  ~Index_Code, ~Function, ~Description,
+  "Rx1day", "calculate_Rx1day", "Annual maximum 1-day precipitation",
+  "Rx5day", "calculate_Rx5day", "Annual maximum consecutive 5-day precipitation",
+  "R10mm", "calculate_R10mm", "Number of days with precipitation ≥ 10 mm",
+  "R20mm", "calculate_R20mm", "Number of days with precipitation ≥ 20 mm",
+  "R1mm", "calculate_R1mm", "Number of days with precipitation ≥ 1 mm (wet days)",
+  "CDD", "calculate_CDD", "Consecutive dry days statistics",
+  "CWD", "calculate_CWD", "Consecutive wet days statistics",
+  "SDII", "calculate_SDII", "Simple daily intensity index (mean precipitation on wet days)",
+  "PRCPstats", "calculate_PRCPstats", "Comprehensive annual precipitation statistics",
+  "TX25", "calculate_TX25", "Number of summer days (maximum temperature > 25°C)",
+  "TR20", "calculate_TR20", "Number of tropical nights (minimum temperature > 20°C)",
+  "TXx", "calculate_TXx", "Monthly maximum value of daily maximum temperature",
+  "TNn", "calculate_TNn", "Monthly minimum value of daily minimum temperature",
+  "TX30", "calculate_TX30", "Number of days with maximum temperature ≥ 30°C",
+  "TX35", "calculate_TX35", "Number of days with maximum temperature ≥ 35°C",
+  "TN0", "calculate_TN0", "Number of days with minimum temperature < 0°C",
+  "DTR", "calculate_DTR", "Diurnal temperature range statistics",
+  "TX90p", "calculate_TX90p", "90th percentile of daily maximum temperature",
+  "TN10p", "calculate_TN10p", "10th percentile of daily minimum temperature",
+  "WSDI", "calculate_WSDI", "Warm spell duration index",
+  "CSDI", "calculate_CSDI", "Cold spell duration index"
+)
+
+# Display the table
+library(DT)
+datatable(indices_table, 
+          options = list(pageLength = 25, 
+                         scrollX = TRUE,
+                         columnDefs = list(list(className = 'dt-center', targets = "_all"))),
+          caption = "Table 1: Climate Extreme Indices Available in tidyextreme")
+```
+
+This vignette demonstrates the basic usage of all functions in the tidyextreme package. For more detailed information about each function, run `r ?function_name` in R.
+
+## Feedback, Issues, and Support
+
+The `tidyextreme` package is under active development. Feedback and contributions are welcome!
+
+-   📋 **Reporting Bugs & Feature Requests:**\
+    The preferred way to report a bug or suggest an enhancement is to **open an issue** on our GitHub repository:\
+    [**https://github.com/Mauritia-Flexuosa/tidyextreme/issues**](https://github.com/Mauritia-flexuosa/tidyextreme/issues).
+
+-   📧 **Contact the Maintainer:**\
+    For other questions or direct contact, you can email the package maintainer:\
+    **`marciobcure@gmail.com`**.
+
+-   🌐 **General Questions:**\
+    For general how-to questions, consider posting on community forums like [Stack Overflow](https://stackoverflow.com/questions/tagged/r) using the relevant tags (e.g., `[r]` and `[yourpackagename]`).
+
+Thank you for using `tidyextreme`!
+
+## 6. References
+
+All indices in the `tidyextreme` package follow the definitions from the Expert Team on Climate Change Detection and Indices (ETCCDI).
+
+For more information about the ETCCDI and the official definitions of these indices, please refer to:
+
+```         
+ETCCDI Official Website: http://etccdi.pacificclimate.org/
+
+Climate Change Indices: Definitions and methods available at http://etccdi.pacificclimate.org/list_27_indices.shtml
+```
+
+Key References:
+
+```         
+Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., Trewin, B., and Zwiers, F.W. (2011). Indices for monitoring changes in extremes based on daily temperature and precipitation data. WIREs Climate Change, 2(6), 851-870. doi:10.1002/wcc.147
+
+Klein Tank, A.M.G., Zwiers, F.W., and Zhang, X. (2009). Guidelines on Analysis of extremes in a changing climate in support of informed decisions for adaptation. World Meteorological Organization, WMO-TD No. 1500, 56 pp.
+
+The R package climdex.pcic which also implements ETCCDI indices: https://cran.r-project.org/package=climdex.pcic (not available anymore on CRAN)
+```
+
+```{r session_info, message=FALSE, warning=FALSE, include=T, echo=T}
+cat("tidyextreme version:", as.character(packageVersion("tidyextreme")))
+```
