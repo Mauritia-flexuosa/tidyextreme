@@ -9,7 +9,6 @@ bibentry(
     family = "Cure"
   ),
   year = "2026",
-  note = paste("R package version", packageVersion("tidyextreme")),
   url = "https://github.com/Mauritia-flexuosa/tidyextreme"
 )
 

@@ -1,5 +1,5 @@
 Package: tidyextreme
-Title: tidyextreme: A Tidy Toolbox for Climate Extreme Indices
+Title: Tidyextreme: A Tidy Toolbox for Climate Extreme Indices
 Version: 1.0.0
 Authors@R: 
     person(
@@ -12,8 +12,8 @@ URL: https://github.com/Mauritia-flexuosa/tidyextreme
 BugReports: https://github.com/Mauritia-flexuosa/tidyextreme/issues    
 Description: |
     Calculate Expert Team on Climate Change Detection and Indices (ETCCDI)
-    climate indices from daily or hourly temperature and precipitation data.
-    Provides flexible data handling.
+    climate indices from daily or hourly temperature and precipitation data. Provides flexible data handling.
+Depends: R (>= 4.1.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -32,7 +32,7 @@ Suggests:
     ggplot2,
     tidyr,
     DT,
-    tibble,
+    tibble
 RoxygenNote: 7.3.3
 Config/testthat/edition: 3
 VignetteBuilder: knitr

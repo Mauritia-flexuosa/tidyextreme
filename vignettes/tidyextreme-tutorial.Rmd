@@ -1,5 +1,5 @@
 ---
-title: "tidyextreme: A Tidy Toolbox for Climate Extreme Indices"
+title: "Tidyextreme: A Tidy Toolbox for Climate Extreme Indices"
 author: "Marcio Baldissera Cure"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -135,7 +135,7 @@ head(rx5day_result)
 
 ### 2.3 Number of Heavy Precipitation Days (R10mm)
 
-Counts the number of days per year when precipitation ≥ 10 mm, following ETCCDI definition R10mm.
+Counts the number of days per year when precipitation >= 10 mm, following ETCCDI definition R10mm.
 
 Parameters:
 
@@ -168,7 +168,7 @@ head(r10mm_result)
 
 ### 2.4 Number of Very Heavy Precipitation Days (R20mm)
 
-Counts the number of days per year when precipitation ≥ 20 mm, following ETCCDI definition R20mm.
+Counts the number of days per year when precipitation >= 20 mm, following ETCCDI definition R20mm.
 
 Parameters:
 
@@ -199,9 +199,9 @@ r20mm_result <- calculate_R20mm(
 head(r20mm_result)
 ```
 
-### 2.5 Number of Days with Precipitation ≥ 1mm (R1mm)
+### 2.5 Number of Days with Precipitation >= 1mm (R1mm)
 
-Counts the number of days per year when precipitation ≥ 1 mm, representing wet days.
+Counts the number of days per year when precipitation >= 1 mm, representing wet days.
 
 Parameters:
 
@@ -267,7 +267,7 @@ head(cdd_result)
 
 ### 2.7 Consecutive Wet Days (CWD)
 
-Calculates statistics for wet spells (consecutive days with precipitation ≥ 1 mm), following ETCCDI definition CWD.
+Calculates statistics for wet spells (consecutive days with precipitation >= 1 mm), following ETCCDI definition CWD.
 
 Parameters:
 
@@ -300,7 +300,7 @@ head(cwd_result)
 
 ### 2.8 Simple Daily Intensity Index (SDII)
 
-Calculates the mean precipitation amount on wet days (≥ 1 mm), following ETCCDI definition SDII.
+Calculates the mean precipitation amount on wet days (>= 1 mm), following ETCCDI definition SDII.
 
 Parameters:
 
@@ -498,7 +498,7 @@ tnn_result <- calculate_TNn(
 head(tnn_result)
 ```
 
-### 3.5 Number of Days with Temperature ≥ 30°C (TX30)
+### 3.5 Number of Days with Temperature >= 30°C (TX30)
 
 Counts the number of days per year when daily temperature is greater than or equal to 30°C.
 
@@ -529,7 +529,7 @@ tx30_result <- calculate_TX30(
 head(tx30_result)
 ```
 
-### 3.6 Number of Days with Temperature ≥ 35°C (TX35)
+### 3.6 Number of Days with Temperature >= 35°C (TX35)
 
 Counts the number of days per year when daily temperature is greater than or equal to 35°C.
 
@@ -800,9 +800,9 @@ indices_table <- tribble(
   ~Index_Code, ~Function, ~Description,
   "Rx1day", "calculate_Rx1day", "Annual maximum 1-day precipitation",
   "Rx5day", "calculate_Rx5day", "Annual maximum consecutive 5-day precipitation",
-  "R10mm", "calculate_R10mm", "Number of days with precipitation ≥ 10 mm",
-  "R20mm", "calculate_R20mm", "Number of days with precipitation ≥ 20 mm",
-  "R1mm", "calculate_R1mm", "Number of days with precipitation ≥ 1 mm (wet days)",
+  "R10mm", "calculate_R10mm", "Number of days with precipitation >= 10 mm",
+  "R20mm", "calculate_R20mm", "Number of days with precipitation >= 20 mm",
+  "R1mm", "calculate_R1mm", "Number of days with precipitation >= 1 mm (wet days)",
   "CDD", "calculate_CDD", "Consecutive dry days statistics",
   "CWD", "calculate_CWD", "Consecutive wet days statistics",
   "SDII", "calculate_SDII", "Simple daily intensity index (mean precipitation on wet days)",
@@ -811,8 +811,8 @@ indices_table <- tribble(
   "TR20", "calculate_TR20", "Number of tropical nights (minimum temperature > 20°C)",
   "TXx", "calculate_TXx", "Monthly maximum value of daily maximum temperature",
   "TNn", "calculate_TNn", "Monthly minimum value of daily minimum temperature",
-  "TX30", "calculate_TX30", "Number of days with maximum temperature ≥ 30°C",
-  "TX35", "calculate_TX35", "Number of days with maximum temperature ≥ 35°C",
+  "TX30", "calculate_TX30", "Number of days with maximum temperature >= 30°C",
+  "TX35", "calculate_TX35", "Number of days with maximum temperature >= 35°C",
   "TN0", "calculate_TN0", "Number of days with minimum temperature < 0°C",
   "DTR", "calculate_DTR", "Diurnal temperature range statistics",
   "TX90p", "calculate_TX90p", "90th percentile of daily maximum temperature",
