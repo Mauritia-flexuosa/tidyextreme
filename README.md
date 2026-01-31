@@ -1,6 +1,6 @@
 # tidyextreme: A Tidy Toolbox for Climate Extreme Indices 
 
-<img src="/tidyextreme.png" align="center" height="120" />
+<img src="./man/figures/tidyextreme.png" align="ceter" height="120"/>
 
 ##### Marcio Baldissera Cure    
 date: 31/01/2026
