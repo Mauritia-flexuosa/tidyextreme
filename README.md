@@ -8,11 +8,11 @@ The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit fo
 
 ## Installation
 
-# Intall from GitHub:
-# Option 1: Using devtools
+### Intall from GitHub:
+#### Option 1: Using devtools
 `devtools::install_github("Mauritia-flexuosa/tidyextreme")`
 
-# Option 2: Using remotes
+#### Option 2: Using remotes
 `remotes::install_github("Mauritia-flexuosa/tidyextreme")`
 
 ## 1. Data Preparation
