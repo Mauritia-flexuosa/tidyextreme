@@ -366,9 +366,9 @@ head(prcpstats_result)
 
 ## 3. Temperature Indices
 
-### 3.1 Number of Summer Days (TX > 25°C)
+### 3.1 Number of Summer Days (TX > 25 °C)
 
-Counts the number of days per year when daily maximum temperature exceeds 25°C, following ETCCDI definition SU25.
+Counts the number of days per year when daily maximum temperature exceeds 25 \textdegree{}C, following ETCCDI definition SU25.
 
 Parameters:
 
@@ -383,7 +383,7 @@ tmax_col: Name of maximum temperature column (daily data)
 
 temp_col: Name of temperature column (for single temp or hourly)
 
-threshold: Temperature threshold in °C (default: 25)
+threshold: Temperature threshold in  \textdegree{}C (default: 25)
 ```
 
 Returns: A tibble with columns: year, TX25
@@ -399,9 +399,9 @@ tx25_result <- calculate_TX25(
 head(tx25_result)
 ```
 
-### 3.2 Number of Tropical Nights (TN > 20°C)
+### 3.2 Number of Tropical Nights (TN > 20 °C)
 
-Counts the number of days per year when daily minimum temperature exceeds 20°C, following ETCCDI definition TR20.
+Counts the number of days per year when daily minimum temperature exceeds 20 \textdegree{}C, following ETCCDI definition TR20.
 
 Parameters:
 
@@ -416,7 +416,7 @@ tmin_col: Name of minimum temperature column (daily data)
 
 temp_col: Name of temperature column (for single temp or hourly)
 
-threshold: Temperature threshold in °C (default: 20)
+threshold: Temperature threshold in  \textdegree{}C (default: 20)
 ```
 
 Returns: A tibble with columns: year, TR20
@@ -498,9 +498,9 @@ tnn_result <- calculate_TNn(
 head(tnn_result)
 ```
 
-### 3.5 Number of Days with Temperature >= 30°C (TX30)
+### 3.5 Number of Days with Temperature >= 30 °C (TX30)
 
-Counts the number of days per year when daily temperature is greater than or equal to 30°C.
+Counts the number of days per year when daily temperature is greater than or equal to 30 \textdegree{}C.
 
 Parameters:
 
@@ -529,9 +529,9 @@ tx30_result <- calculate_TX30(
 head(tx30_result)
 ```
 
-### 3.6 Number of Days with Temperature >= 35°C (TX35)
+### 3.6 Number of Days with Temperature >= 35 °C (TX35)
 
-Counts the number of days per year when daily temperature is greater than or equal to 35°C.
+Counts the number of days per year when daily temperature is greater than or equal to 35 \textdegree{}C.
 
 Parameters:
 
@@ -560,9 +560,9 @@ tx35_result <- calculate_TX35(
 head(tx35_result)
 ```
 
-### 3.7 Number of Days with Temperature < 0°C (TN0)
+### 3.7 Number of Days with Temperature < 0 °C (TN0)
 
-Counts the number of days per year when daily temperature is less than 0°C.
+Counts the number of days per year when daily temperature is less than 0 \textdegree{}C.
 
 Parameters:
 
@@ -811,9 +811,9 @@ indices_table <- tribble(
   "TR20", "calculate_TR20", "Number of tropical nights (minimum temperature > 20°C)",
   "TXx", "calculate_TXx", "Monthly maximum value of daily maximum temperature",
   "TNn", "calculate_TNn", "Monthly minimum value of daily minimum temperature",
-  "TX30", "calculate_TX30", "Number of days with maximum temperature >= 30°C",
-  "TX35", "calculate_TX35", "Number of days with maximum temperature >= 35°C",
-  "TN0", "calculate_TN0", "Number of days with minimum temperature < 0°C",
+  "TX30", "calculate_TX30", "Number of days with maximum temperature >= 30 °C",
+  "TX35", "calculate_TX35", "Number of days with maximum temperature >= 35 °C",
+  "TN0", "calculate_TN0", "Number of days with minimum temperature < 0 °C",
   "DTR", "calculate_DTR", "Diurnal temperature range statistics",
   "TX90p", "calculate_TX90p", "90th percentile of daily maximum temperature",
   "TN10p", "calculate_TN10p", "10th percentile of daily minimum temperature",
