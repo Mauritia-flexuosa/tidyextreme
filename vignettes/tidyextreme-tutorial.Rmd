@@ -838,14 +838,14 @@ The `tidyextreme` package is under active development. Feedback and contribution
 
 -   📋 **Reporting Bugs & Feature Requests:**\
     The preferred way to report a bug or suggest an enhancement is to **open an issue** on our GitHub repository:\
-    [**https://github.com/Mauritia-Flexuosa/tidyextreme/issues**](https://github.com/Mauritia-flexuosa/tidyextreme/issues).
+    [**https://github.com/Mauritia-flexuosa/tidyextreme/issues**](https://github.com/Mauritia-flexuosa/tidyextreme/issues).
 
 -   📧 **Contact the Maintainer:**\
     For other questions or direct contact, you can email the package maintainer:\
     **`marciobcure@gmail.com`**.
 
 -   🌐 **General Questions:**\
-    For general how-to questions, consider posting on community forums like [Stack Overflow](https://stackoverflow.com/questions/tagged/r) using the relevant tags (e.g., `[r]` and `[yourpackagename]`).
+    For general how-to questions, consider posting on community forums like [Stack Overflow](https://stackoverflow.com/questions/tagged/r) using the relevant tags (e.g., `[r]` and `[tidyextreme]`).
 
 Thank you for using `tidyextreme`!
 
@@ -856,9 +856,9 @@ All indices in the `tidyextreme` package follow the definitions from the Expert 
 For more information about the ETCCDI and the official definitions of these indices, please refer to:
 
 ```         
-ETCCDI Official Website: http://etccdi.pacificclimate.org/
+ETCCDI Official Website: <http://etccdi.pacificclimate.org/>
 
-Climate Change Indices: Definitions and methods available at http://etccdi.pacificclimate.org/list_27_indices.shtml
+Climate Change Indices: Definitions and methods available at <http://etccdi.pacificclimate.org/list_27_indices.shtml>
 ```
 
 Key References:
@@ -868,7 +868,7 @@ Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., T
 
 Klein Tank, A.M.G., Zwiers, F.W., and Zhang, X. (2009). Guidelines on Analysis of extremes in a changing climate in support of informed decisions for adaptation. World Meteorological Organization, WMO-TD No. 1500, 56 pp.
 
-The R package climdex.pcic which also implements ETCCDI indices: https://cran.r-project.org/package=climdex.pcic (not available anymore on CRAN)
+The R package climdex.pcic which also implements ETCCDI indices: <https://cran.r-project.org/package=climdex.pcic> (not available anymore on CRAN)
 ```
 
 ```{r session_info, message=FALSE, warning=FALSE, include=T, echo=T}
