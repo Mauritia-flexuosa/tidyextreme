@@ -1,5 +1,5 @@
 Package: tidyextreme
-Title: Tidyextreme: A Tidy Toolbox for Climate Extreme Indices
+Title: A Tidy Toolbox for Climate Extreme Indices
 Version: 1.0.0
 Authors@R: 
     person(

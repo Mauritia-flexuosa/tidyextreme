@@ -234,7 +234,7 @@ head(r1mm_result)
 
 ### 2.6 Consecutive Dry Days (CDD)
 
-Calculates statistics for dry spells (consecutive days with precipitation \< 1 mm), following ETCCDI definition CDD.
+Calculates statistics for dry spells (consecutive days with precipitation < 1 mm), following ETCCDI definition CDD.
 
 Parameters:
 
@@ -366,7 +366,7 @@ head(prcpstats_result)
 
 ## 3. Temperature Indices
 
-### 3.1 Number of Summer Days (TX \> 25°C)
+### 3.1 Number of Summer Days (TX > 25°C)
 
 Counts the number of days per year when daily maximum temperature exceeds 25°C, following ETCCDI definition SU25.
 
@@ -399,7 +399,7 @@ tx25_result <- calculate_TX25(
 head(tx25_result)
 ```
 
-### 3.2 Number of Tropical Nights (TN \> 20°C)
+### 3.2 Number of Tropical Nights (TN > 20°C)
 
 Counts the number of days per year when daily minimum temperature exceeds 20°C, following ETCCDI definition TR20.
 
@@ -560,7 +560,7 @@ tx35_result <- calculate_TX35(
 head(tx35_result)
 ```
 
-### 3.7 Number of Days with Temperature \< 0°C (TN0)
+### 3.7 Number of Days with Temperature < 0°C (TN0)
 
 Counts the number of days per year when daily temperature is less than 0°C.
 
