@@ -839,7 +839,7 @@ The `tidyextreme` package is under active development. Feedback and contribution
     **`marciobcure@gmail.com`**.
 
 -   🌐 **General Questions:**\
-    For general how-to questions, consider posting on community forums like [Stack Overflow](https://stackoverflow.com/questions/tagged/r) using the relevant tags (e.g., `[r]` and `[yourpackagename]`).
+    For general how-to questions, consider posting on community forums like [Stack Overflow](https://stackoverflow.com/questions/tagged/r) using the relevant tags (e.g., `[r]` and `[tidyextreme]`).
 
 Thank you for using `tidyextreme`!
 
@@ -850,9 +850,9 @@ All indices in the `tidyextreme` package follow the definitions from the Expert 
 For more information about the ETCCDI and the official definitions of these indices, please refer to:
 
 ```         
-ETCCDI Official Website: http://etccdi.pacificclimate.org/
+ETCCDI Official Website: <http://etccdi.pacificclimate.org/>
 
-Climate Change Indices: Definitions and methods available at http://etccdi.pacificclimate.org/list_27_indices.shtml
+Climate Change Indices: Definitions and methods available at <http://etccdi.pacificclimate.org/list_27_indices.shtml>
 ```
 
 Key References:
