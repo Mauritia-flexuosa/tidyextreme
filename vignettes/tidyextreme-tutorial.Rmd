@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<img src="../man/figures/tidyextreme.png" align="ceter" height="120"/>
+
 ## Introduction
 
 The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit for calculating essential climate extreme indices as defined by the Expert Team on Climate Change Detection and Indices (ETCCDI). Designed for seamless integration into modern data analysis workflows, it allows researchers to compute key metrics—such as maximum 1-day precipitation (Rx1day), consecutive dry days (CDD), warm spell duration (WSDI), and monthly temperature extremes (TXx, TNn)—directly from daily or hourly data using a consistent `calculate_*()` syntax. By returning tidy data frames and leveraging `dplyr` and `ggplot2` compatibility, tidyextreme simplifies the entire process of extreme event analysis, from data preparation to visualization, making climate research more efficient and reproducible.
