@@ -1,0 +1,15 @@
+# Conteúdo do arquivo inst/CITATION
+citationInfo <- bibentry(
+  bibtype = "Manual",
+  title = "tidyextreme: A Tidy Toolbox for Climate Extreme Indices",
+  author = person(given = "Marcio", middle = "Baldissera", family = "Cure"),
+  year = "2025",
+  note = paste("R package version", packageVersion("tidyextreme")),
+  url = "https://github.com/Mauritia-flexuosa/tidyextreme",
+)
+
+# Cabeçalho e rodapé são opcionais
+citHeader("To cite the tidyextreme package, use:")
+citFooter("Thank you for using tidyextreme!")
+
+print(citationInfo, style = "citation")
