@@ -1,8 +1,8 @@
 #' @title Aggregate hourly data to daily temperature statistics
 #'
 #' @param df_hourly Data frame with hourly temperature data
-#' @param time_col Name of the datetime column (must be POSIXct)
-#' @param temp_col Name of the hourly temperature column
+#' @param time_col Name of the datetime column (must be POSIXct) (string)
+#' @param temp_col Name of the hourly temperature column (string)
 #' @param tz Timezone (default: "UTC")
 #'
 #' @return A tibble with columns: date, tmax, tmin
@@ -61,8 +61,8 @@ aggregate_hourly_temperature <- function(df_hourly,
 #' @title Aggregate hourly data to daily precipitation statistics
 #'
 #' @param df_hourly Data frame with hourly precipitation data
-#' @param time_col Name of the datetime column (must be POSIXct)
-#' @param precip_col Name of the hourly precipitation column
+#' @param time_col Name of the datetime column (must be POSIXct) (string)
+#' @param precip_col Name of the hourly precipitation column (string)
 #' @param tz Timezone (default: "UTC")
 #'
 #' @return A tibble with columns: date, prcp

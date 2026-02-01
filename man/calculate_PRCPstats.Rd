@@ -16,16 +16,16 @@ calculate_PRCPstats(
 \arguments{
 \item{df}{Data frame with precipitation data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. Must be in a format recognizable by lubridate
+\item{time_col}{Name of the time column (string). Must be in a format recognizable by lubridate
 (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")}
 
-\item{prcp_col}{Name of precipitation column (daily data)}
+\item{prcp_col}{Name of precipitation column (daily data) (string)}
 
-\item{precip_col}{Name of precipitation column (hourly data)}
+\item{precip_col}{Name of precipitation column (hourly data) (string)}
 
 \item{wet_threshold}{Threshold for wet day in mm (default: 1)}
 }

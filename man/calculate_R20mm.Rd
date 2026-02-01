@@ -18,14 +18,14 @@ calculate_R20mm(
 
 \item{frequency}{Temporal frequency: "daily" or "hourly"}
 
-\item{time_col}{Name of the time column. Must be in a format recognizable by lubridate
+\item{time_col}{Name of the time column (string). Must be in a format recognizable by lubridate
 (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")}
 
-\item{prcp_col}{Name of precipitation column (daily data)}
+\item{prcp_col}{Name of precipitation column (daily data) (string)}
 
-\item{precip_col}{Name of precipitation column (hourly data)}
+\item{precip_col}{Name of precipitation column (hourly data) (string)}
 
 \item{threshold}{Precipitation threshold in mm (default: 20)}
 }
@@ -33,7 +33,7 @@ calculate_R20mm(
 A data.frame with columns: year, R20mm
 }
 \description{
-Counts the number of days per year when precipitation ≥ 20 mm,
+Counts the number of days per year when precipitation \eqn{\geq} 20 mm,
 following ETCCDI definition R20mm.
 }
 \examples{
@@ -43,7 +43,7 @@ daily_prcp <- data.frame(
   rainfall = pmax(0, rgamma(1096, shape = 0.5, scale = 10))
 )
 
-# Calculate number of days with precipitation ≥ 20mm
+# Calculate number of days with precipitation \eqn{\geq} 20mm
 calculate_R20mm(
   df = daily_prcp,
   frequency = "daily",

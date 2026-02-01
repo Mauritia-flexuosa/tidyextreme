@@ -2,7 +2,7 @@
 % Please edit documentation in R/precipitation-indices.R
 \name{calculate_R1mm}
 \alias{calculate_R1mm}
-\title{Calculate number of days with precipitation ≥ 1mm (R1mm)}
+\title{Calculate number of days with precipitation \eqn{\geq} 1mm (R1mm)}
 \usage{
 calculate_R1mm(
   df,
@@ -18,14 +18,14 @@ calculate_R1mm(
 
 \item{frequency}{Temporal frequency: "daily" or "hourly"}
 
-\item{time_col}{Name of the time column. Must be in a format recognizable by lubridate
+\item{time_col}{Name of the time column (string). Must be in a format recognizable by lubridate
 (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")}
 
-\item{prcp_col}{Name of precipitation column (daily data)}
+\item{prcp_col}{Name of precipitation column (daily data) (string)}
 
-\item{precip_col}{Name of precipitation column (hourly data)}
+\item{precip_col}{Name of precipitation column (hourly data) (string)}
 
 \item{threshold}{Precipitation threshold in mm (default: 1)}
 }
@@ -33,7 +33,7 @@ calculate_R1mm(
 A data.frame with columns: year, R1mm
 }
 \description{
-Counts the number of days per year when precipitation ≥ 1 mm,
+Counts the number of days per year when precipitation \eqn{\geq} 1 mm,
 representing wet days.
 }
 \examples{
@@ -43,7 +43,7 @@ daily_prcp <- data.frame(
   rainfall = pmax(0, rgamma(1096, shape = 0.5, scale = 10))
 )
 
-# Calculate number of days with precipitation ≥ 1mm (wet days)
+# Calculate number of days with precipitation \eqn{\geq} 1mm (wet days)
 calculate_R1mm(
   df = daily_prcp,
   frequency = "daily",

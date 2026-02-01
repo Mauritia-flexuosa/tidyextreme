@@ -16,16 +16,16 @@ calculate_CWD(
 \arguments{
 \item{df}{Data frame with precipitation data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. Must be in a format recognizable by lubridate
+\item{time_col}{Name of the time column (string). Must be in a format recognizable by lubridate
 (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")}
 
-\item{prcp_col}{Name of precipitation column (daily data)}
+\item{prcp_col}{Name of precipitation column (daily data) (string)}
 
-\item{precip_col}{Name of precipitation column (hourly data)}
+\item{precip_col}{Name of precipitation column (hourly data) (string)}
 
 \item{wet_threshold}{Threshold for wet day in mm (default: 1)}
 }
@@ -34,7 +34,7 @@ A data.frame with columns: year, CWD_max, CWD_mean, CWD_median, n_wet_spells
 }
 \description{
 Calculates statistics for wet spells (consecutive days with
-precipitation ≥ 1 mm), following ETCCDI definition CWD.
+precipitation \eqn{\geq} 1 mm), following ETCCDI definition CWD.
 }
 \examples{
 # Daily precipitation data

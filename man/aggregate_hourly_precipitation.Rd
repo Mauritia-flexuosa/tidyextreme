@@ -14,9 +14,9 @@ aggregate_hourly_precipitation(
 \arguments{
 \item{df_hourly}{Data frame with hourly precipitation data}
 
-\item{time_col}{Name of the datetime column (must be POSIXct)}
+\item{time_col}{Name of the datetime column (must be POSIXct) (string)}
 
-\item{precip_col}{Name of the hourly precipitation column}
+\item{precip_col}{Name of the hourly precipitation column (string)}
 
 \item{tz}{Timezone (default: "UTC")}
 }

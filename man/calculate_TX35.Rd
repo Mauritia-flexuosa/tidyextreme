@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TX35}
 \alias{calculate_TX35}
-\title{Calculate number of days with temperature ≥ 35°C}
+\title{Calculate number of days with temperature \eqn{\geq} 35\eqn{^\\circ}{}C}
 \usage{
 calculate_TX35(
   df,
@@ -15,22 +15,22 @@ calculate_TX35(
 \arguments{
 \item{df}{Data frame with climate data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. For daily frequency, the column should be
+\item{time_col}{Name of the time column (string). For daily frequency, the column should be
 of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
-\item{tmax_col}{Name of maximum temperature column (daily data)}
+\item{tmax_col}{Name of maximum temperature column (daily data) (string)}
 
-\item{temp_col}{Name of temperature column (for single temp or hourly)}
+\item{temp_col}{Name of temperature column (for single temp or hourly) (string)}
 }
 \value{
 A tibble with columns: year, TX35
 }
 \description{
 Counts the number of days per year when daily temperature
-is greater than or equal to 35°C.
+is greater than or equal to 35\eqn{^\\circ}{}C.
 }
 \examples{
 # Daily data with maximum temperature

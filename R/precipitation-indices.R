@@ -4,12 +4,12 @@
 #' following ETCCDI definition Rx1day.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param min_valid_years Minimum years with valid data (default: 1)
 #'
 #' @return A data.frame with columns: year, Rx1day
@@ -97,13 +97,13 @@ calculate_Rx1day <- function(df, frequency = "daily",
 #' over 5 consecutive days, following ETCCDI definition Rx5day.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #'
 #' @return A data.frame with columns: year, Rx5day
 #'
@@ -194,17 +194,17 @@ calculate_Rx5day <- function(df, frequency = "daily",
 
 #' Calculate number of heavy precipitation days (R10mm)
 #'
-#' Counts the number of days per year when precipitation ≥ 10 mm,
+#' Counts the number of days per year when precipitation \eqn{\geq} 10 mm,
 #' following ETCCDI definition R10mm.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param threshold Precipitation threshold in mm (default: 10)
 #'
 #' @return A data.frame with columns: year, R10mm
@@ -216,7 +216,7 @@ calculate_Rx5day <- function(df, frequency = "daily",
 #'   rainfall = pmax(0, rgamma(1096, shape = 0.5, scale = 10))
 #' )
 #'
-#' # Calculate number of days with precipitation ≥ 10mm
+#' # Calculate number of days with precipitation \eqn{\geq} 10mm
 #' calculate_R10mm(
 #'   df = daily_prcp,
 #'   frequency = "daily",
@@ -273,17 +273,17 @@ calculate_R10mm <- function(df, frequency = "daily",
 
 #' Calculate number of very heavy precipitation days (R20mm)
 #'
-#' Counts the number of days per year when precipitation ≥ 20 mm,
+#' Counts the number of days per year when precipitation \eqn{\geq} 20 mm,
 #' following ETCCDI definition R20mm.
 #'
 #' @param df Data frame with precipitation data
 #' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param threshold Precipitation threshold in mm (default: 20)
 #'
 #' @return A data.frame with columns: year, R20mm
@@ -295,7 +295,7 @@ calculate_R10mm <- function(df, frequency = "daily",
 #'   rainfall = pmax(0, rgamma(1096, shape = 0.5, scale = 10))
 #' )
 #'
-#' # Calculate number of days with precipitation ≥ 20mm
+#' # Calculate number of days with precipitation \eqn{\geq} 20mm
 #' calculate_R20mm(
 #'   df = daily_prcp,
 #'   frequency = "daily",
@@ -351,19 +351,19 @@ calculate_R20mm <- function(df, frequency = "daily",
   return(result  |> dplyr::select(-n_days))
 }
 
-#' Calculate number of days with precipitation ≥ 1mm (R1mm)
+#' Calculate number of days with precipitation \eqn{\geq} 1mm (R1mm)
 #'
-#' Counts the number of days per year when precipitation ≥ 1 mm,
+#' Counts the number of days per year when precipitation \eqn{\geq} 1 mm,
 #' representing wet days.
 #'
 #' @param df Data frame with precipitation data
 #' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param threshold Precipitation threshold in mm (default: 1)
 #'
 #' @return A data.frame with columns: year, R1mm
@@ -375,7 +375,7 @@ calculate_R20mm <- function(df, frequency = "daily",
 #'   rainfall = pmax(0, rgamma(1096, shape = 0.5, scale = 10))
 #' )
 #'
-#' # Calculate number of days with precipitation ≥ 1mm (wet days)
+#' # Calculate number of days with precipitation \eqn{\geq} 1mm (wet days)
 #' calculate_R1mm(
 #'   df = daily_prcp,
 #'   frequency = "daily",
@@ -415,13 +415,13 @@ calculate_R1mm <- function(df, frequency = "daily",
 #' precipitation < 1 mm), following ETCCDI definition CDD.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param dry_threshold Threshold for dry day in mm (default: 1)
 #'
 #' @return A data.frame with columns: year, CDD_max, CDD_mean, CDD_median, n_dry_spells
@@ -509,16 +509,16 @@ calculate_CDD <- function(df, frequency = "daily",
 #' Calculate consecutive wet days (CWD)
 #'
 #' Calculates statistics for wet spells (consecutive days with
-#' precipitation ≥ 1 mm), following ETCCDI definition CWD.
+#' precipitation \eqn{\geq} 1 mm), following ETCCDI definition CWD.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param wet_threshold Threshold for wet day in mm (default: 1)
 #'
 #' @return A data.frame with columns: year, CWD_max, CWD_mean, CWD_median, n_wet_spells
@@ -605,17 +605,17 @@ calculate_CWD <- function(df, frequency = "daily",
 
 #' Calculate Simple Daily Intensity Index (SDII)
 #'
-#' Calculates the mean precipitation amount on wet days (≥ 1 mm),
+#' Calculates the mean precipitation amount on wet days (\eqn{\geq} 1 mm),
 #' following ETCCDI definition SDII.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param wet_threshold Threshold for wet day in mm (default: 1)
 #'
 #' @return A data.frame with columns: year, SDII, wet_days, total_prcp
@@ -692,13 +692,13 @@ calculate_SDII <- function(df, frequency = "daily",
 #' and maximum daily precipitation.
 #'
 #' @param df Data frame with precipitation data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. Must be in a format recognizable by lubridate
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). Must be in a format recognizable by lubridate
 #'   (e.g., Date for daily data, POSIXct for hourly data). Recommended formats:
 #'   - Daily: YYYY-MM-DD (e.g., "2023-01-15")
 #'   - Hourly: YYYY-MM-DD HH:MM:SS (e.g., "2023-01-15 14:30:00")
-#' @param prcp_col Name of precipitation column (daily data)
-#' @param precip_col Name of precipitation column (hourly data)
+#' @param prcp_col Name of precipitation column (daily data) (string)
+#' @param precip_col Name of precipitation column (hourly data) (string)
 #' @param wet_threshold Threshold for wet day in mm (default: 1)
 #'
 #' @return A data.frame with columns: year, PRCP_total, PRCP_days, PRCP_mean, PRCP_max

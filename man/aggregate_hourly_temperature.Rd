@@ -14,9 +14,9 @@ aggregate_hourly_temperature(
 \arguments{
 \item{df_hourly}{Data frame with hourly temperature data}
 
-\item{time_col}{Name of the datetime column (must be POSIXct)}
+\item{time_col}{Name of the datetime column (must be POSIXct) (string)}
 
-\item{temp_col}{Name of the hourly temperature column}
+\item{temp_col}{Name of the hourly temperature column (string)}
 
 \item{tz}{Timezone (default: "UTC")}
 }

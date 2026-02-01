@@ -16,17 +16,17 @@ calculate_DTR(
 \arguments{
 \item{df}{Data frame with climate data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. For daily frequency, the column should be
+\item{time_col}{Name of the time column (string). For daily frequency, the column should be
 of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
-\item{tmax_col}{Name of maximum temperature column (daily data)}
+\item{tmax_col}{Name of maximum temperature column (daily data) (string)}
 
-\item{tmin_col}{Name of minimum temperature column (daily data)}
+\item{tmin_col}{Name of minimum temperature column (daily data) (string)}
 
-\item{temp_col}{Name of temperature column (hourly data)}
+\item{temp_col}{Name of temperature column (hourly data) (string)}
 }
 \value{
 A tibble with columns: year, DTR_mean, DTR_sd, n_days

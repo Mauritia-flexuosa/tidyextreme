@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TN0}
 \alias{calculate_TN0}
-\title{Calculate number of days with temperature < 0°C}
+\title{Calculate number of days with temperature < 0\eqn{^\\circ}{}C}
 \usage{
 calculate_TN0(
   df,
@@ -15,22 +15,22 @@ calculate_TN0(
 \arguments{
 \item{df}{Data frame with climate data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. For daily frequency, the column should be
+\item{time_col}{Name of the time column (string). For daily frequency, the column should be
 of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
-\item{tmin_col}{Name of minimum temperature column (daily data)}
+\item{tmin_col}{Name of minimum temperature column (daily data) (string)}
 
-\item{temp_col}{Name of temperature column (for single temp or hourly)}
+\item{temp_col}{Name of temperature column (for single temp or hourly) (string)}
 }
 \value{
 A tibble with columns: year, TN0
 }
 \description{
 Counts the number of days per year when daily temperature
-is less than 0°C.
+is less than 0\eqn{^\\circ}{}C.
 }
 \examples{
 # Daily data with minimum temperature

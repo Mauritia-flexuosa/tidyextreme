@@ -15,11 +15,17 @@ vignette: >
 
 The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit for calculating essential climate extreme indices as defined by the Expert Team on Climate Change Detection and Indices (ETCCDI). Designed for seamless integration into modern data analysis workflows, it allows researchers to compute key metrics—such as maximum 1-day precipitation (Rx1day), consecutive dry days (CDD), warm spell duration (WSDI), and monthly temperature extremes (TXx, TNn)—directly from daily or hourly data using a consistent `calculate_*()` syntax. By returning tidy data frames and leveraging `dplyr` and `ggplot2` compatibility, tidyextreme simplifies the entire process of extreme event analysis, from data preparation to visualization, making climate research more efficient and reproducible.
 
+
 ## Installation
 
-```{r instalation}
-# Install from GitHub
-#devtools::install_github("mauritia-flexuosa/tidyextreme")
+```{r instalation, message=FALSE, warning=FALSE, eval=FALSE}
+# Option 1: Using devtools
+
+devtools::install_github("Mauritia-flexuosa/tidyextreme")
+
+# Option 2: Using remotes
+
+remotes::install_github("Mauritia-flexuosa/tidyextreme")
 
 # Or from CRAN (when available)
 #install.packages("tidyextreme") # Not yet on CRAN
@@ -76,13 +82,13 @@ Calculates the annual maximum 1-day precipitation amount, following ETCCDI defin
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 min_valid_years: Minimum years with valid data (default: 1)
 ```
@@ -108,16 +114,16 @@ Calculates the annual maximum precipitation amount accumulated over 5 consecutiv
 
 Parameters:
 
-```         
+```        
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 ```
 
 Returns: A data.frame with columns: year, Rx5day
@@ -142,13 +148,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string) (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 threshold: Precipitation threshold in mm (default: 10)
 ```
@@ -172,16 +178,16 @@ Counts the number of days per year when precipitation >= 20 mm, following ETCCDI
 
 Parameters:
 
-```         
+```        
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 threshold: Precipitation threshold in mm (default: 20)
 ```
@@ -208,13 +214,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 threshold: Precipitation threshold in mm (default: 1)
 ```
@@ -241,13 +247,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 dry_threshold: Threshold for dry day in mm (default: 1)
 ```
@@ -274,13 +280,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 wet_threshold: Threshold for wet day in mm (default: 1)
 ```
@@ -307,13 +313,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 wet_threshold: Threshold for wet day in mm (default: 1)
 ```
@@ -340,13 +346,13 @@ Parameters:
 ```         
 df: Data frame with precipitation data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-prcp_col: Name of precipitation column (daily data)
+prcp_col: Name of precipitation column (daily data) (string)
 
-precip_col: Name of precipitation column (hourly data)
+precip_col: Name of precipitation column (hourly data) (string)
 
 wet_threshold: Threshold for wet day in mm (default: 1)
 ```
@@ -368,22 +374,22 @@ head(prcpstats_result)
 
 ### 3.1 Number of Summer Days (TX > 25 °C)
 
-Counts the number of days per year when daily maximum temperature exceeds 25 \textdegree{}C, following ETCCDI definition SU25.
+Counts the number of days per year when daily maximum temperature exceeds 25°C, following ETCCDI definition SU25.
 
 Parameters:
 
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
-threshold: Temperature threshold in  \textdegree{}C (default: 25)
+threshold: Temperature threshold in  °C (default: 25)
 ```
 
 Returns: A tibble with columns: year, TX25
@@ -401,22 +407,22 @@ head(tx25_result)
 
 ### 3.2 Number of Tropical Nights (TN > 20 °C)
 
-Counts the number of days per year when daily minimum temperature exceeds 20 \textdegree{}C, following ETCCDI definition TR20.
+Counts the number of days per year when daily minimum temperature exceeds 20 °C, following ETCCDI definition TR20.
 
 Parameters:
 
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
-threshold: Temperature threshold in  \textdegree{}C (default: 20)
+threshold: Temperature threshold in  °C (default: 20)
 ```
 
 Returns: A tibble with columns: year, TR20
@@ -441,13 +447,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
 min_days: Minimum days per month for valid calculation (default: 20)
 ```
@@ -474,13 +480,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
 min_days: Minimum days per month for valid calculation (default: 20)
 ```
@@ -500,20 +506,20 @@ head(tnn_result)
 
 ### 3.5 Number of Days with Temperature >= 30 °C (TX30)
 
-Counts the number of days per year when daily temperature is greater than or equal to 30 \textdegree{}C.
+Counts the number of days per year when daily temperature is greater than or equal to 30 °C.
 
 Parameters:
 
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 ```
 
 Returns: A tibble with columns: year, TX30
@@ -531,20 +537,20 @@ head(tx30_result)
 
 ### 3.6 Number of Days with Temperature >= 35 °C (TX35)
 
-Counts the number of days per year when daily temperature is greater than or equal to 35 \textdegree{}C.
+Counts the number of days per year when daily temperature is greater than or equal to 35 °C.
 
 Parameters:
 
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 ```
 
 Returns: A tibble with columns: year, TX35
@@ -562,20 +568,20 @@ head(tx35_result)
 
 ### 3.7 Number of Days with Temperature < 0 °C (TN0)
 
-Counts the number of days per year when daily temperature is less than 0 \textdegree{}C.
+Counts the number of days per year when daily temperature is less than 0 °C.
 
 Parameters:
 
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 ```
 
 Returns: A tibble with columns: year, TN0
@@ -600,13 +606,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
 temp_col: Name of temperature column (hourly data)
 ```
@@ -634,13 +640,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 ```
 
 Returns: A tibble with columns: year, TX90p
@@ -665,13 +671,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 ```
 
 Returns: A tibble with columns: year, TN10p
@@ -696,13 +702,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmax_col: Name of maximum temperature column (daily data)
+tmax_col: Name of maximum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
 window_days: Window size for percentile calculation (default: 30)
 
@@ -733,13 +739,13 @@ Parameters:
 ```         
 df: Data frame with climate data
 
-frequency: Temporal frequency: "daily" or "hourly"
+frequency: Temporal frequency "daily" or "hourly" (string)
 
-time_col: Name of the time column. For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
+time_col: Name of the time column (string). For daily frequency, the column should be of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 
-tmin_col: Name of minimum temperature column (daily data)
+tmin_col: Name of minimum temperature column (daily data) (string)
 
-temp_col: Name of temperature column (for single temp or hourly)
+temp_col: Name of temperature column (for single temp or hourly) (string)
 
 window_days: Window size for percentile calculation (default: 30)
 
@@ -855,22 +861,21 @@ All indices in the `tidyextreme` package follow the definitions from the Expert 
 
 For more information about the ETCCDI and the official definitions of these indices, please refer to:
 
-```         
 ETCCDI Official Website: <http://etccdi.pacificclimate.org/>
 
 Climate Change Indices: Definitions and methods available at <http://etccdi.pacificclimate.org/list_27_indices.shtml>
-```
+
 
 Key References:
 
-```         
-Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., Trewin, B., and Zwiers, F.W. (2011). Indices for monitoring changes in extremes based on daily temperature and precipitation data. WIREs Climate Change, 2(6), 851-870. doi:10.1002/wcc.147
+
+Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., Trewin, B., and Zwiers, F.W. (2011). Indices for monitoring changes in extremes based on daily temperature and precipitation data. WIREs Climate Change, 2(6), 851-870. <https:doi.org/10.1002/wcc.147>
 
 Klein Tank, A.M.G., Zwiers, F.W., and Zhang, X. (2009). Guidelines on Analysis of extremes in a changing climate in support of informed decisions for adaptation. World Meteorological Organization, WMO-TD No. 1500, 56 pp.
 
 The R package climdex.pcic which also implements ETCCDI indices: <https://cran.r-project.org/package=climdex.pcic> (not available anymore on CRAN)
-```
 
-```{r session_info, message=FALSE, warning=FALSE, include=T, echo=T}
+
+```{r session_info, message=FALSE, warning=FALSE, include=T, echo=F}
 cat("tidyextreme version:", as.character(packageVersion("tidyextreme")))
 ```

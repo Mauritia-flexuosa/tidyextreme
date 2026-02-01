@@ -10,8 +10,7 @@ Authors@R:
     )
 URL: https://github.com/Mauritia-flexuosa/tidyextreme
 BugReports: https://github.com/Mauritia-flexuosa/tidyextreme/issues    
-Description: |
-    Calculate Expert Team on Climate Change Detection and Indices (ETCCDI)
+Description: Calculate Expert Team on Climate Change Detection and Indices (ETCCDI)
     climate indices from daily or hourly temperature and precipitation data. Provides flexible data handling.
 Depends: R (>= 4.1.0)
 License: MIT + file LICENSE

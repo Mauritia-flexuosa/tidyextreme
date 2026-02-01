@@ -16,15 +16,15 @@ calculate_Rx1day(
 \arguments{
 \item{df}{Data frame with precipitation data}
 
-\item{frequency}{Temporal frequency: "daily" or "hourly"}
+\item{frequency}{Temporal frequency: "daily" or "hourly" (string)}
 
-\item{time_col}{Name of the time column. For daily frequency, the column should be
+\item{time_col}{Name of the time column (string). For daily frequency, the column should be
 of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
-\item{prcp_col}{Name of precipitation column (daily data)}
+\item{prcp_col}{Name of precipitation column (daily data) (string)}
 
-\item{precip_col}{Name of precipitation column (hourly data)}
+\item{precip_col}{Name of precipitation column (hourly data) (string)}
 
 \item{min_valid_years}{Minimum years with valid data (default: 1)}
 }

@@ -1,7 +1,7 @@
-#' Calculate number of summer days (TX > 25°C)
+#' Calculate number of summer days (TX > 25\eqn{^\\circ}{}C)
 #'
 #' Counts the number of days per year when daily maximum temperature
-#' exceeds 25°C, following ETCCDI definition SU25.
+#' exceeds 25\eqn{^\\circ}{}C, following ETCCDI definition SU25.
 #'
 #' @param df Data frame with climate data
 #' @param frequency Temporal frequency: "daily" or "hourly"
@@ -10,7 +10,7 @@
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 #' @param tmax_col Name of maximum temperature column (daily data)
 #' @param temp_col Name of temperature column (for single temp or hourly)
-#' @param threshold Temperature threshold in °C (default: 25)
+#' @param threshold Temperature threshold in \eqn{^\\circ}{}C (default: 25)
 #'
 #' @return A tibble with columns: year, TX25
 #'
@@ -108,10 +108,10 @@ calculate_TX25 <- function(df, frequency = "daily",
   return(result  |> dplyr::select(-n_days))
 }
 
-#' Calculate number of tropical nights (TN > 20°C)
+#' Calculate number of tropical nights (TN > 20\eqn{^\\circ}{}C)
 #'
 #' Counts the number of days per year when daily minimum temperature
-#' exceeds 20°C, following ETCCDI definition TR20.
+#' exceeds 20\eqn{^\\circ}{}C, following ETCCDI definition TR20.
 #'
 #' @param df Data frame with climate data
 #' @param frequency Temporal frequency: "daily" or "hourly"
@@ -120,7 +120,7 @@ calculate_TX25 <- function(df, frequency = "daily",
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
 #' @param tmin_col Name of minimum temperature column (daily data)
 #' @param temp_col Name of temperature column (for single temp or hourly)
-#' @param threshold Temperature threshold in °C (default: 20)
+#' @param threshold Temperature threshold in \eqn{^\\circ}{}C (default: 20)
 #'
 #' @return A tibble with columns: year, TR20
 #'
@@ -406,10 +406,10 @@ calculate_TNn <- function(df, frequency = "daily",
   return(result  |> dplyr::select(-n_days))
 }
 
-#' Calculate number of days with temperature ≥ 30°C
+#' Calculate number of days with temperature \eqn{\geq} 30\eqn{^\\circ}{}C
 #'
 #' Counts the number of days per year when daily temperature
-#' is greater than or equal to 30°C.
+#' is greater than or equal to 30\eqn{^\\circ}{}C.
 #'
 #' @param df Data frame with climate data
 #' @param frequency Temporal frequency: "daily" or "hourly"
@@ -451,18 +451,18 @@ calculate_TX30 <- function(df, frequency = "daily",
     dplyr::rename(TX30 = TX25)
 }
 
-#' Calculate number of days with temperature ≥ 35°C
+#' Calculate number of days with temperature \eqn{\geq} 35\eqn{^\\circ}{}C
 #'
 #' Counts the number of days per year when daily temperature
-#' is greater than or equal to 35°C.
+#' is greater than or equal to 35\eqn{^\\circ}{}C.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmax_col Name of maximum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmax_col Name of maximum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #'
 #' @return A tibble with columns: year, TX35
 #'
@@ -496,18 +496,18 @@ calculate_TX35 <- function(df, frequency = "daily",
     dplyr::rename(TX35 = TX25)
 }
 
-#' Calculate number of days with temperature < 0°C
+#' Calculate number of days with temperature < 0\eqn{^\\circ}{}C
 #'
 #' Counts the number of days per year when daily temperature
-#' is less than 0°C.
+#' is less than 0\eqn{^\\circ}{}C.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmin_col Name of minimum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmin_col Name of minimum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #'
 #' @return A tibble with columns: year, TN0
 #'
@@ -577,13 +577,13 @@ calculate_TN0 <- function(df, frequency = "daily",
 #' (difference between maximum and minimum temperature) per year.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmax_col Name of maximum temperature column (daily data)
-#' @param tmin_col Name of minimum temperature column (daily data)
-#' @param temp_col Name of temperature column (hourly data)
+#' @param tmax_col Name of maximum temperature column (daily data) (string)
+#' @param tmin_col Name of minimum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (hourly data) (string)
 #'
 #' @return A tibble with columns: year, DTR_mean, DTR_sd, n_days
 #'
@@ -650,12 +650,12 @@ calculate_DTR <- function(df, frequency = "daily",
 #' used as threshold for extreme warm days.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmax_col Name of maximum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmax_col Name of maximum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #'
 #' @return A tibble with columns: year, TX90p
 #'
@@ -725,12 +725,12 @@ calculate_TX90p <- function(df, frequency = "daily",
 #' used as threshold for extreme cold nights.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmin_col Name of minimum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmin_col Name of minimum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #'
 #' @return A tibble with columns: year, TN10p
 #'
@@ -801,12 +801,12 @@ calculate_TN10p <- function(df, frequency = "daily",
 #' definition WSDI.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmax_col Name of maximum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmax_col Name of maximum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #' @param window_days Window size for percentile calculation (default: 30)
 #' @param min_consecutive Minimum consecutive days for warm spell (default: 6)
 #'
@@ -912,12 +912,12 @@ calculate_WSDI <- function(df, frequency = "daily",
 #' definition CSDI.
 #'
 #' @param df Data frame with climate data
-#' @param frequency Temporal frequency: "daily" or "hourly"
-#' @param time_col Name of the time column. For daily frequency, the column should be
+#' @param frequency Temporal frequency: "daily" or "hourly" (string)
+#' @param time_col Name of the time column (string). For daily frequency, the column should be
 #'   of class Date or a string in the format YYYY-MM-DD. For hourly frequency, the column
 #'   should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.
-#' @param tmin_col Name of minimum temperature column (daily data)
-#' @param temp_col Name of temperature column (for single temp or hourly)
+#' @param tmin_col Name of minimum temperature column (daily data) (string)
+#' @param temp_col Name of temperature column (for single temp or hourly) (string)
 #' @param window_days Window size for percentile calculation (default: 30)
 #' @param min_consecutive Minimum consecutive days for cold spell (default: 6)
 #'

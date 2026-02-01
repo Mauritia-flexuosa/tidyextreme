@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TX30}
 \alias{calculate_TX30}
-\title{Calculate number of days with temperature ≥ 30°C}
+\title{Calculate number of days with temperature \eqn{\geq} 30\eqn{^\\circ}{}C}
 \usage{
 calculate_TX30(
   df,
@@ -30,7 +30,7 @@ A tibble with columns: year, TX30
 }
 \description{
 Counts the number of days per year when daily temperature
-is greater than or equal to 30°C.
+is greater than or equal to 30\eqn{^\\circ}{}C.
 }
 \examples{
 # Daily data with maximum temperature
