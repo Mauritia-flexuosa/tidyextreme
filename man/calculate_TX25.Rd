@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TX25}
 \alias{calculate_TX25}
-\title{Calculate number of summer days (TX > 25\eqn{^\\circ}{}C)}
+\title{Calculate number of summer days (TX > 25\eqn{^\circ}{}C)}
 \usage{
 calculate_TX25(
   df,
@@ -26,14 +26,14 @@ should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
 \item{temp_col}{Name of temperature column (for single temp or hourly)}
 
-\item{threshold}{Temperature threshold in \eqn{^\\circ}{}C (default: 25)}
+\item{threshold}{Temperature threshold in \eqn{^\circ}{}C (default: 25)}
 }
 \value{
 A tibble with columns: year, TX25
 }
 \description{
 Counts the number of days per year when daily maximum temperature
-exceeds 25\eqn{^\\circ}{}C, following ETCCDI definition SU25.
+exceeds 25\eqn{^\circ}{}C, following ETCCDI definition SU25.
 }
 \examples{
 # Daily data with separate max/min

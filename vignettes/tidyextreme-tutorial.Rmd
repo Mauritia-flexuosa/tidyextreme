@@ -861,15 +861,15 @@ All indices in the `tidyextreme` package follow the definitions from the Expert 
 
 For more information about the ETCCDI and the official definitions of these indices, please refer to:
 
-ETCCDI Official Website: <http://etccdi.pacificclimate.org/>
+ETCCDI Official Website: <https://etccdi.pacificclimate.org/>
 
-Climate Change Indices: Definitions and methods available at <http://etccdi.pacificclimate.org/list_27_indices.shtml>
+Climate Change Indices: Definitions and methods available at <https://etccdi.pacificclimate.org/list_27_indices.shtml>
 
 
 Key References:
 
 
-Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., Trewin, B., and Zwiers, F.W. (2011). Indices for monitoring changes in extremes based on daily temperature and precipitation data. WIREs Climate Change, 2(6), 851-870. <https:doi.org/10.1002/wcc.147>
+Zhang, X., Alexander, L., Hegerl, G.C., Jones, P., Tank, A.K., Peterson, T.C., Trewin, B., and Zwiers, F.W. (2011). Indices for monitoring changes in extremes based on daily temperature and precipitation data. WIREs Climate Change, 2(6), 851-870. <https://doi.org/10.1002/wcc.147>
 
 Klein Tank, A.M.G., Zwiers, F.W., and Zhang, X. (2009). Guidelines on Analysis of extremes in a changing climate in support of informed decisions for adaptation. World Meteorological Organization, WMO-TD No. 1500, 56 pp.
 

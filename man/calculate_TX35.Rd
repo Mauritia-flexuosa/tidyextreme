@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TX35}
 \alias{calculate_TX35}
-\title{Calculate number of days with temperature \eqn{\geq} 35\eqn{^\\circ}{}C}
+\title{Calculate number of days with temperature \eqn{\geq} 35\eqn{^\circ}{}C}
 \usage{
 calculate_TX35(
   df,
@@ -30,7 +30,7 @@ A tibble with columns: year, TX35
 }
 \description{
 Counts the number of days per year when daily temperature
-is greater than or equal to 35\eqn{^\\circ}{}C.
+is greater than or equal to 35\eqn{^\circ}{}C.
 }
 \examples{
 # Daily data with maximum temperature

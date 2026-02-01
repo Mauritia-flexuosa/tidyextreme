@@ -2,7 +2,7 @@
 % Please edit documentation in R/temperature-indices.R
 \name{calculate_TR20}
 \alias{calculate_TR20}
-\title{Calculate number of tropical nights (TN > 20\eqn{^\\circ}{}C)}
+\title{Calculate number of tropical nights (TN > 20\eqn{^\circ}{}C)}
 \usage{
 calculate_TR20(
   df,
@@ -26,14 +26,14 @@ should be of class POSIXct or a string in the format YYYY-MM-DD HH:MM:SS.}
 
 \item{temp_col}{Name of temperature column (for single temp or hourly)}
 
-\item{threshold}{Temperature threshold in \eqn{^\\circ}{}C (default: 20)}
+\item{threshold}{Temperature threshold in \eqn{^\circ}{}C (default: 20)}
 }
 \value{
 A tibble with columns: year, TR20
 }
 \description{
 Counts the number of days per year when daily minimum temperature
-exceeds 20\eqn{^\\circ}{}C, following ETCCDI definition TR20.
+exceeds 20\eqn{^\circ}{}C, following ETCCDI definition TR20.
 }
 \examples{
 # Daily data with separate min temperature
