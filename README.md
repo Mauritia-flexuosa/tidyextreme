@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R-CMD-check](https://github.com/Mauritia-flexuosa/tidyextreme/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Mauritia-flexuosa/tidyextreme/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/tidyextreme)](https://CRAN.R-project.org/package=tidyextreme)
   <!-- badges: end -->
 # tidyextreme: A Tidy Toolbox for Climate Extreme Indices 
 
