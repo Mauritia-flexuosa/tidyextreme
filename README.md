@@ -1,3 +1,6 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+  <!-- badges: end -->
 # tidyextreme: A Tidy Toolbox for Climate Extreme Indices 
 
 <img src="./man/figures/tidyextreme.png" align="ceter" height="120"/>
