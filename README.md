@@ -16,6 +16,9 @@ The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit fo
 
 ## Installation
 
+### Install from CRAN
+`install_package("tidyextreme")`
+
 ### Intall from GitHub:
 #### Option 1: Using devtools
 `devtools::install_github("Mauritia-flexuosa/tidyextreme")`
