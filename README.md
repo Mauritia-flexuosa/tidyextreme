@@ -1,6 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![CRAN status](https://www.r-pkg.org/badges/version/tidyextreme)](https://CRAN.R-project.org/package=tidyextreme)
+[![](http://cranlogs.r-pkg.org/badges/last-month/tidyextreme)](https://cran.r-project.org/package=tidyextreme)
   <!-- badges: end -->
 # tidyextreme: A Tidy Toolbox for Climate Extreme Indices 
 
