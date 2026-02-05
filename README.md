@@ -18,14 +18,10 @@ The `tidyextreme` package provides a streamlined, tidyverse-compliant toolkit fo
 ## Installation
 
 ### Install from CRAN
-`install_package("tidyextreme")`
+`install.package("tidyextreme")`
 
 ### Intall from GitHub:
-#### Option 1: Using devtools
 `devtools::install_github("Mauritia-flexuosa/tidyextreme")`
-
-#### Option 2: Using remotes
-`remotes::install_github("Mauritia-flexuosa/tidyextreme")`
 
 ## 1. Data Preparation
 
