@@ -869,6 +869,3 @@ Klein Tank, A.M.G., Zwiers, F.W., and Zhang, X. (2009). Guidelines on Analysis o
 The R package climdex.pcic which also implements ETCCDI indices: https://cran.r-project.org/package=climdex.pcic (not available anymore on CRAN)
 ```
 
-```{r session_info, message=FALSE, warning=FALSE, include=T, echo=T}
-cat("tidyextreme version:", as.character(packageVersion("tidyextreme")))
-```
