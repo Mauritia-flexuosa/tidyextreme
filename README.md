@@ -7,7 +7,7 @@
 
 <img src="./man/figures/tidyextreme.png" align="ceter" height="120"/>
 
-##### Marcio Baldissera Cure    
+##### Marcio Baldissera Cure
 date: 31/01/2026
 
 
